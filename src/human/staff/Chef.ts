@@ -6,4 +6,8 @@ export class Chef extends Staff{
       super(category,id, name, age, gender);
       this.salary = salary
     }
+
+    // getSalary(): number {
+      
+    // }
 }

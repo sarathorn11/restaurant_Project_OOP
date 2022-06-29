@@ -6,10 +6,14 @@ enum DrinkCategory{
 }
 
 export class Drink{
-    constructor(private name: string, private price: number, private drinkCategory:DrinkCategory){}
+    constructor(private name: string, private price: number, private drinkCategory:DrinkCategory,private drinkQantity:number){}
 
     getPrice():number{
         return this.price;
+    }
+
+    getQuantity():number{
+        return this.drinkQantity;
     }
 
     getCategory():DrinkCategory{

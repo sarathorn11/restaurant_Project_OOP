@@ -23,10 +23,10 @@ export class Order{
     getTotalPrice(){
         let prices=0;
         this.getFood().forEach(food =>{
-            prices += food.getPrice();
+            prices += (food.getPrice()*food.getQuantity());
         });
         this.getDrink().forEach(drink =>{
-            prices += drink.getPrice();
+            prices += (drink.getPrice()*drink.getQuantity());
         });
         return prices;
     }

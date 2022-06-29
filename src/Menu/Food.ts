@@ -5,10 +5,14 @@ enum FoodCategory{
 }
 
 export class Food{
-    constructor(private name: string, private price: number, private foodCategory:FoodCategory){}
+    constructor(private name: string, private price: number, private foodCategory:FoodCategory,private foodQantity:number){}
 
     getPrice():number{
         return this.price;
+    }
+
+    getQuantity():number{
+        return this.foodQantity;
     }
 
     getCategory():FoodCategory{
