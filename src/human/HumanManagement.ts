@@ -1,64 +1,129 @@
 import { Drink } from "../Menu/Drink";
 import { Food } from "../Menu/Food";
 import { Customer } from "./customer/Customer";
-import { Staff } from "./staff/Staff";
+import { Cashier } from "./staff/Cashier";
+import { Chef } from "./staff/Chef";
+import { Security } from "./staff/Security";
+import { Staff, StaffCategory } from "./staff/Staff";
+import { Waiter } from "./staff/Waiter";
+
+export enum SalaryPercentage{
+  CASHIER = (5/100),
+  SECURITY = (5/100),
+  CHEF = (35/100),
+  WAITER = (20/100),
+}
 
 export class HumanManagement{
     public customers:Customer[]=[];
-    private staffs:Staff[]=[];
+    public staffs:Staff[]=[];
 
-    addCustomer(customer: Customer) {
-      this.customers.push(customer);
+    addCustomer(...customer: Customer[]) {
+      this.customers= this.customers.concat(customer);
     }
   
     getCustomers() {
       return this.customers;
     }
   
-    addStaff(staff: Staff) {
-      this.staffs.push(staff);
+    addStaff(...staff: Staff[]) {
+      this.staffs= this.staffs.concat(staff);
     }
   
     getStaffs() {
       return this.staffs;
     }
 
-    getTotalRevenue():number {
+    getTotalRevenue() {
       let revenue = 0;
-      this.getCustomers().forEach(customer => {
-        customer.orders.forEach(order =>{
-          revenue += order.getTotalPrice()
-        });
-      })
+      for(let staff of this.staffs) {
+        if(staff.getCategory() === StaffCategory.CASHIER){
+          let cashier = staff as Cashier;
+          for(let order of cashier.getOrders()) {
+            revenue += order.getTotalPrice();
+          }
+        }
+      }
       return revenue;
     }
 
-    getCustomersWithFood(foodToFind:Food){
-      let allCustomers:Customer[] = [];
-      this.getCustomers().forEach(customer =>{
-        customer.getOrders().forEach(order =>{
-          order.getFood().forEach(food=>{
-            if(food.isEqual(foodToFind)){
-              allCustomers.push(customer);
-            }
-          });
-        });
+    getSalaryCashier(): number {
+      let salary: number = 0;
+      let numberStaffs = 0;
+      this.getStaffs().forEach(staff =>{
+        let cashier = staff as Cashier;
+        if(cashier.getCategory() === StaffCategory.CASHIER){
+          numberStaffs++;
+        }
       });
-      return allCustomers;
+      salary+=((this.getTotalRevenue()*SalaryPercentage.CASHIER)/numberStaffs)
+      return salary;
     }
 
-    getCustomersWithDrink(drinkToFind:Drink){
-      let allCustomers:Customer[] = [];
-      this.getCustomers().forEach(customer =>{
-        customer.getOrders().forEach(order =>{
-          order.getDrink().forEach(drink=>{
-            if(drink.isEqual(drinkToFind)){
-              allCustomers.push(customer);
-            }
-          });
-        });
+    getSalaryChef(): number {
+      let salary: number = 0;
+      let numberStaffs = 0;
+      this.getStaffs().forEach(staff =>{
+        let chef = staff as Chef;
+        if(chef.getCategory() === StaffCategory.CHEF){
+          numberStaffs++;
+        }
       });
-      return allCustomers;
+      salary+=((this.getTotalRevenue()*SalaryPercentage.CHEF)/numberStaffs)
+      return salary;
     }
 
+    getSalarySecurity(): number {
+      let salary: number = 0;
+      let numberStaffs = 0;
+      this.getStaffs().forEach(staff =>{
+        let security = staff as Security;
+        if(security.getCategory() === StaffCategory.SECURITY){
+          numberStaffs++;
+        }
+      });
+      salary+=((this.getTotalRevenue()*SalaryPercentage.SECURITY)/numberStaffs)
+      return salary;
+    }
+
+    getSalaryWaiter(): number {
+      let salary: number = 0;
+      let numberStaffs = 0;
+      this.getStaffs().forEach(staff =>{
+        let waiter = staff as Waiter;
+        if(waiter.getCategory() === StaffCategory.WAITER){
+          numberStaffs++;
+        }
+      });
+      salary+=((this.getTotalRevenue()*SalaryPercentage.WAITER)/numberStaffs)
+      return salary;
+    }
+
+    // getCustomersWithFood(foodToFind:Food){
+    //   let allCustomers:Customer[] = [];
+    //   this.getCustomers().forEach(customer =>{
+    //     customer.getOrders().forEach(order =>{
+    //       order.getFood().forEach(food=>{
+    //         if(food.isEqual(foodToFind)){
+    //           allCustomers.push(customer);
+    //         }
+    //       });
+    //     });
+    //   });
+    //   return allCustomers;
+    // }
+
+    // getCustomersWithDrink(drinkToFind:Drink){
+    //   let allCustomers:Customer[] = [];
+    //   this.getCustomers().forEach(customer =>{
+    //     customer.getOrders().forEach(order =>{
+    //       order.getDrink().forEach(drink=>{
+    //         if(drink.isEqual(drinkToFind)){
+    //           allCustomers.push(customer);
+    //         }
+    //       });
+    //     });
+    //   });
+    //   return allCustomers;
+    // }
 }

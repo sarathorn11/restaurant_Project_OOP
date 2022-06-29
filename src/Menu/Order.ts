@@ -2,10 +2,19 @@ import { Drink } from "./Drink";
 import { Food } from "./Food";
 
 export class Order{
-    constructor(private foods:Food[], private drinks:Drink[]){}
+
+    constructor(private id:number, private foods:Food[], private drinks:Drink[],private customerId:number){}
     
     getFood(){
         return this.foods;
+    }
+
+    getCustomerId(){
+        return this.customerId;
+    }
+
+    getId(){
+        return this.id;
     }
 
     getDrink(){
