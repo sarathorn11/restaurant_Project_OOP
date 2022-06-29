@@ -1,6 +1,7 @@
 import { TablesManagerment } from "./table/TablesManagerment";
 import { BookingManagerment } from "./booking/BookingManagerment";
 import {HumanManagement} from "./human/HumanManagement";
+import { Menu } from "./Menu/Menu";
 
 export class Restaurant {
   // Restaurant attributes
@@ -15,4 +16,5 @@ export class Restaurant {
   public table: TablesManagerment = new TablesManagerment();
   public booking: BookingManagerment = new BookingManagerment();
   public human: HumanManagement = new HumanManagement(); 
+  public menu: Menu = new Menu(); 
 }
