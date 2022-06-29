@@ -3,7 +3,7 @@ import { Gender } from "../Person";
 import { Staff, StaffCategory } from "./Staff";
 
 export class Waiter extends Staff{
-  constructor(category:StaffCategory, id:number, name: string, age: number, gender: Gender) {
+  constructor(category:StaffCategory, id:number, name: string, age: number, gender: Gender,private tableId:number) {
     super(category,id, name, age, gender);
   }
   getName(): string {
@@ -14,6 +14,9 @@ export class Waiter extends Staff{
   }
   getGender(): Gender {
     return this.gender;
+  }
+  getTableId(): number {
+    return this.tableId;
   }
 
 }

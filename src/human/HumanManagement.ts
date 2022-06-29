@@ -1,5 +1,6 @@
 import { Drink } from "../Menu/Drink";
 import { Food } from "../Menu/Food";
+import { OrderStatus } from "../Menu/Order";
 import { Customer } from "./customer/Customer";
 import { Cashier } from "./staff/Cashier";
 import { Chef } from "./staff/Chef";
@@ -40,7 +41,9 @@ export class HumanManagement{
         if(staff.getCategory() === StaffCategory.CASHIER){
           let cashier = staff as Cashier;
           for(let order of cashier.getOrders()) {
-            revenue += order.getTotalPrice();
+            if((order.getOrderStatus()===OrderStatus.DONE)||(order.getOrderStatus()===OrderStatus.IN_PROGRESS)){
+              revenue += order.getTotalPrice();
+            }
           }
         }
       }
@@ -98,32 +101,4 @@ export class HumanManagement{
       salary+=((this.getTotalRevenue()*SalaryPercentage.WAITER)/numberStaffs)
       return salary;
     }
-
-    // getCustomersWithFood(foodToFind:Food){
-    //   let allCustomers:Customer[] = [];
-    //   this.getCustomers().forEach(customer =>{
-    //     customer.getOrders().forEach(order =>{
-    //       order.getFood().forEach(food=>{
-    //         if(food.isEqual(foodToFind)){
-    //           allCustomers.push(customer);
-    //         }
-    //       });
-    //     });
-    //   });
-    //   return allCustomers;
-    // }
-
-    // getCustomersWithDrink(drinkToFind:Drink){
-    //   let allCustomers:Customer[] = [];
-    //   this.getCustomers().forEach(customer =>{
-    //     customer.getOrders().forEach(order =>{
-    //       order.getDrink().forEach(drink=>{
-    //         if(drink.isEqual(drinkToFind)){
-    //           allCustomers.push(customer);
-    //         }
-    //       });
-    //     });
-    //   });
-    //   return allCustomers;
-    // }
 }
