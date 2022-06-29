@@ -19,4 +19,12 @@ export class Drink{
     getName():string{
         return this.name;
     }
+
+    isEqual(other:Drink):boolean{
+        let isEqual = false;
+        if(this.getName() === other.getName() && this.getCategory() === other.getCategory() && this.getPrice() === other.getPrice()){
+            isEqual = true;
+        }
+        return isEqual;
+    }
 }

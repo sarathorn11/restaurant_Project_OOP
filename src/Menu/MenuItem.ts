@@ -2,20 +2,16 @@ import { Drink } from "./Drink";
 import { Food } from "./Food";
 
 export class MenuItem{
-    private food:Food=undefined;
-    private drink:Drink=undefined;
+    private food:Food[]=[];
+    private drink:Drink[]=[];
     constructor(private id:number){}
 
-    getFood():Food{
-        return this.food;
+    addFood(...food:Food[]){
+        this.food = this.food.concat(food);
     }
 
-    getDrink():Drink{
-        return this.drink;
-    }
-
-    setFood(food:Food){
-        this.food = food;
+    addDrink(...drink:Drink[]){
+        this.drink = this.drink.concat(drink);
     }
 
     

@@ -6,4 +6,8 @@ export abstract class Menu{
     addMenu(menuItem:MenuItem){
         this.menu.push(menuItem);
     }
+
+    getMenu(){
+        return this.menu;
+    }
 }

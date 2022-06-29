@@ -5,8 +5,6 @@ import { Customer } from "../human/customer/Customer";
 export class Booking {
     constructor(datetime:DateTime,private customer: Customer, private chair:Chair){}
 
-
-
     addCustomer(customer: Customer){
         this.customer = customer;
     }
@@ -21,7 +19,6 @@ export class Booking {
         return this.chair
     }
 
-   
     isEqual(other: Booking):boolean{
        let result = false;
         if(this.getCustomer().isEqual(other.getCustomer()) && this.getChair().isEqual(other.getChair())){

@@ -9,7 +9,7 @@ export class Table{
     getChairs(){
         return this.chairs;
     }
-    addChair(chair:Chair){
-        return this.chairs.push(chair);
+    addChair(...chair:Chair[]){
+        this.chairs = this.chairs.concat(chair);
     }
 }
