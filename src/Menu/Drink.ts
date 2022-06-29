@@ -1,4 +1,4 @@
-enum DrinkCategory{
+export enum DrinkCategory{
     COLD_DRINK = "COLD_DRINK",
     HOT_DRINK = "HOT_DRINK",
     SOFT_DRINK = "SOFT_DRINK",

@@ -22,13 +22,6 @@ export class Staff extends Person {
       super(id, name, age, gender);
     }
     
-    setSalary(salary: number) {
-      this.salary = salary;
-    }
-    
-    getSalary():number {
-      return this.salary;
-    }
     
     getCategory():StaffCategory{
       return this.category;

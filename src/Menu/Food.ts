@@ -1,4 +1,4 @@
-enum FoodCategory{
+export enum FoodCategory{
     APPETIZER = "APPETIZER",
     MAIN_COURSE = "MAIN_COURSE",
     DESSERT = "DESSERT"
