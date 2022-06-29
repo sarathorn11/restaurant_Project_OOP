@@ -3,19 +3,20 @@ import { Chair } from "../table/Chair";
 import {DateTime} from './DateTime'
 import { Customer } from "../human/customer/Customer";
 export class Booking {
-    constructor(datetime:DateTime,private customer: Customer, private chair:Chair){}
+    constructor(private datetime:DateTime, private chair:Chair){}
 
 
+    addCustomerBooking(customer: Customer){
+        if(!this.chair.hasCustomer()){
+            this.chair.setCustomer(customer);
+        }
 
-    addCustomer(customer: Customer){
-        this.customer = customer;
     }
-    getCustomer(){
-        return this.customer
-    }
+
+   
     
     addChair(chair:Chair){
-        this.chair =chair;
+        this.chair = chair;
     }
     getChair(){
         return this.chair
@@ -24,7 +25,7 @@ export class Booking {
    
     isEqual(other: Booking):boolean{
        let result = false;
-        if(this.getCustomer().isEqual(other.getCustomer()) && this.getChair().isEqual(other.getChair())){
+        if(this.getChair().isEqual(other.getChair())){
             result = true;
         }
         return result;
