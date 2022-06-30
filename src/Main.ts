@@ -15,6 +15,7 @@ import {Food,FoodCategory} from "./Menu/Food";
 import {Drink,DrinkCategory} from "./Menu/Drink";
 import {MenuItem} from "./Menu/MenuItem";
 import {Order} from "./Menu/Order";
+import { Months } from "./human/HumanManagement";
 
 
 
@@ -82,8 +83,8 @@ let drink2 = new Drink('ABC',1,DrinkCategory.COLD_DRINK,3)
 let menuItem1 = new MenuItem(1)
 
 //create order
-let order1 = new Order(1,[food1,food2],[drink1],1)
-let order2 = new Order(2,[food2],[drink2],2)
+let order1 = new Order(1,[food1,food2],[drink1],1,date1)
+let order2 = new Order(2,[food2],[drink2],2,date1)
 
 
 //-------------------------------------------------
@@ -98,8 +99,8 @@ restaurant.table.addTable(table1);
 restaurant.table.addTable(table2);
 
 //add booking
-restaurant.booking.addBooking(booking1)
-restaurant.booking.addBooking(booking2)
+// restaurant.booking.addBooking(booking1)
+// restaurant.booking.addBooking(booking2)
 
 //add MenuItem
 restaurant.menu.addMenu(menuItem1)
@@ -131,15 +132,15 @@ Sao.addOrder(order2);
 
 
 // //check bill for customers
-console.log(Sao.checkBill(Nge));
-console.log(Sao.checkBill(Sarath));
+console.log(Nge.getName()+" spends a total of "+ Sao.checkBill(Nge)+"$ today");
+// console.log(Sarath.getName()+" spends a total of "+Sao.checkBill(Sarath)+"$ today");
 
 //total revenue in the restaurant
-console.log("The restaurant total revenue is " +restaurant.human.getTotalRevenue()+"$ this month.");
-console.log("Each cashier get paid "+Math.round(restaurant.human.getSalaryCashier())+"$ this month.");
-console.log("Each chef get paid "+Math.round(restaurant.human.getSalaryChef())+"$ this month.");
-console.log("Each security get paid "+Math.round(restaurant.human.getSalarySecurity())+"$ this month.");
-console.log("Each waiter get paid "+Math.round(restaurant.human.getSalaryWaiter())+"$ this month.");
+console.log("The restaurant total revenue is " +restaurant.human.getTotalRevenue(Months.MARCH)+"$ this month.");
+// console.log("Each cashier get paid "+Math.round(restaurant.human.getSalaryCashier(Months.MAY))+"$ this month.");
+// console.log("Each chef get paid "+Math.round(restaurant.human.getSalaryChef(Months.MARCH))+"$ this month.");
+// console.log("Each security get paid "+Math.round(restaurant.human.getSalarySecurity(Months.MARCH))+"$ this month.");
+// console.log("Each waiter get paid "+Math.round(restaurant.human.getSalaryWaiter(Months.MARCH))+"$ this month.");
 
 // console.log("The restaurant get a profit of "+(restaurant.human.getTotalRevenue()-(Math.round(restaurant.human.getSalaryCashier())+
 // Math.round(restaurant.human.getSalaryChef())+Math.round(restaurant.human.getSalarySecurity())+Math.round(restaurant.human.getSalaryWaiter())))+"$ per month");

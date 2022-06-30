@@ -14,16 +14,19 @@ export class BookingManagerment{
 
 
     addBooking(oneBooking:Booking){
+        let result = "Booking unsuccessful because this chair is already booked."
         if(this.bookings.length===0){
             this.bookings.push(oneBooking);
+            result = "Booking successfully."
         }else{
             this.bookings.forEach(booking =>{
                 if(!booking.isEqual(oneBooking)){
                     this.bookings.push(oneBooking);
+                    result = "Booking successfully."
                 }
-        });
+            });
         }
-  
+        console.log(result);
     }
 
     removerBooking(Abooking:Booking){

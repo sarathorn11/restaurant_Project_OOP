@@ -14,6 +14,21 @@ export enum SalaryPercentage{
   WAITER = (20/100),
 }
 
+export enum Months{
+  JANUARY = 1,
+  FEBRUARY = 2,
+  MARCH = 3,
+  APRIL = 4,
+  MAY = 5,
+  JUNE = 6,
+  JULY = 7,
+  AUGUST = 8,
+  SEPTEMBER = 9,
+  OCTOBER = 10,
+  NOVEMBER = 11,
+  DECEMBER = 12
+}
+
 export class HumanManagement{
     public customers:Customer[]=[];
     public staffs:Staff[]=[];
@@ -34,20 +49,22 @@ export class HumanManagement{
       return this.staffs;
     }
 
-    getTotalRevenue() {
+    getTotalRevenue(month:Months) {
       let revenue = 0;
       for(let staff of this.staffs) {
         if(staff.getCategory() === StaffCategory.CASHIER){
           let cashier = staff as Cashier;
           for(let order of cashier.getOrders()) {
-            revenue += order.getTotalPrice();
+            if(order.getDate().month === month){
+              revenue += order.getTotalPrice();
+            }
           }
         }
       }
       return revenue;
     }
 
-    getSalaryCashier(): number {
+    getSalaryCashier(month:Months): number {
       let salary: number = 0;
       let numberStaffs = 0;
       this.getStaffs().forEach(staff =>{
@@ -56,11 +73,11 @@ export class HumanManagement{
           numberStaffs++;
         }
       });
-      salary+=((this.getTotalRevenue()*SalaryPercentage.CASHIER)/numberStaffs)
+      salary+=((this.getTotalRevenue(month)*SalaryPercentage.CASHIER)/numberStaffs)
       return salary;
     }
 
-    getSalaryChef(): number {
+    getSalaryChef(month:Months): number {
       let salary: number = 0;
       let numberStaffs = 0;
       this.getStaffs().forEach(staff =>{
@@ -69,11 +86,11 @@ export class HumanManagement{
           numberStaffs++;
         }
       });
-      salary+=((this.getTotalRevenue()*SalaryPercentage.CHEF)/numberStaffs)
+      salary+=((this.getTotalRevenue(month)*SalaryPercentage.CHEF)/numberStaffs)
       return salary;
     }
 
-    getSalarySecurity(): number {
+    getSalarySecurity(month:Months): number {
       let salary: number = 0;
       let numberStaffs = 0;
       this.getStaffs().forEach(staff =>{
@@ -82,11 +99,11 @@ export class HumanManagement{
           numberStaffs++;
         }
       });
-      salary+=((this.getTotalRevenue()*SalaryPercentage.SECURITY)/numberStaffs)
+      salary+=((this.getTotalRevenue(month)*SalaryPercentage.SECURITY)/numberStaffs)
       return salary;
     }
 
-    getSalaryWaiter(): number {
+    getSalaryWaiter(month:Months): number {
       let salary: number = 0;
       let numberStaffs = 0;
       this.getStaffs().forEach(staff =>{
@@ -95,35 +112,7 @@ export class HumanManagement{
           numberStaffs++;
         }
       });
-      salary+=((this.getTotalRevenue()*SalaryPercentage.WAITER)/numberStaffs)
+      salary+=((this.getTotalRevenue(month)*SalaryPercentage.WAITER)/numberStaffs)
       return salary;
     }
-
-    // getCustomersWithFood(foodToFind:Food){
-    //   let allCustomers:Customer[] = [];
-    //   this.getCustomers().forEach(customer =>{
-    //     customer.getOrders().forEach(order =>{
-    //       order.getFood().forEach(food=>{
-    //         if(food.isEqual(foodToFind)){
-    //           allCustomers.push(customer);
-    //         }
-    //       });
-    //     });
-    //   });
-    //   return allCustomers;
-    // }
-
-    // getCustomersWithDrink(drinkToFind:Drink){
-    //   let allCustomers:Customer[] = [];
-    //   this.getCustomers().forEach(customer =>{
-    //     customer.getOrders().forEach(order =>{
-    //       order.getDrink().forEach(drink=>{
-    //         if(drink.isEqual(drinkToFind)){
-    //           allCustomers.push(customer);
-    //         }
-    //       });
-    //     });
-    //   });
-    //   return allCustomers;
-    // }
 }

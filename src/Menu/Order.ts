@@ -1,12 +1,17 @@
+import { DateTime } from "../booking/DateTime";
 import { Drink } from "./Drink";
 import { Food } from "./Food";
 
 export class Order{
 
-    constructor(private id:number, private foods:Food[], private drinks:Drink[],private customerId:number){}
+    constructor(private id:number, private foods:Food[], private drinks:Drink[],private customerId:number,private date:DateTime){}
     
     getFood(){
         return this.foods;
+    }
+
+    getDate(){
+        return this.date;
     }
 
     getCustomerId(){
