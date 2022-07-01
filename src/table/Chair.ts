@@ -7,9 +7,11 @@ export class Chair{
     setCustomer(customer:Customer){
         this.customer = customer;
     }
+
     hasCustomer(){
         return this.customer!=undefined;
     }
+    
     getCustomer(){
         return this.customer;
     }

@@ -2,9 +2,14 @@ import { DateTime } from "../booking/DateTime";
 import { Drink } from "./Drink";
 import { Food } from "./Food";
 
-export class Order{
+export enum OrderStatus{
+    START = "START",
+    IN_PROGRESS = "IN_PROGRESS",
+    DONE = "DONE",
+}
 
-    constructor(private id:number, private foods:Food[], private drinks:Drink[],private customerId:number,private date:DateTime){}
+export class Order{
+    constructor(private id:number, private foods:Food[], private drinks:Drink[],private customerId:number,private date:DateTime, private status:OrderStatus=OrderStatus.START){}
     
     getFood(){
         return this.foods;
@@ -20,6 +25,14 @@ export class Order{
 
     getId(){
         return this.id;
+    }
+
+    getOrderStatus():OrderStatus{
+        return this.status;
+    }
+
+    setStatus(status:OrderStatus){
+        this.status = status;
     }
 
     getDrink(){

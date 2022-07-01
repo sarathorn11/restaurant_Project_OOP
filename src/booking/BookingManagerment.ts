@@ -1,30 +1,26 @@
 import { Booking } from './Booking'
 export class BookingManagerment{
-    public bookings:Booking[]=[]
+    private bookings:Booking[]=[]
     
     getBooking(){
         return this.bookings
     }
 
-    // haveCustomer(){
-    //     this.bookings.forEach(booking => {
-    //         return booking.getChair().getCustomer()?.getName();
-    //     })
-    // }
-
-
+//demo ---------------------------------------------------------------
     addBooking(oneBooking:Booking){
-        let result = "Booking unsuccessful because this chair is already booked."
-        if(this.bookings.length===0){
-            this.bookings.push(oneBooking);
-            result = "Booking successfully."
-        }else{
-            this.bookings.forEach(booking =>{
-                if(!booking.isEqual(oneBooking)){
-                    this.bookings.push(oneBooking);
-                    result = "Booking successfully."
-                }
-            });
+        let result = "Booking unsuccessful because this chair is already booked or this chair is occupied by another customer."
+        if(!oneBooking.getChair().hasCustomer()){
+            if(this.bookings.length===0){
+                this.bookings.push(oneBooking);
+                result = "Booking successfully."
+            }else{
+                this.bookings.forEach(booking =>{
+                    if(!booking.isEqual(oneBooking)){
+                        this.bookings.push(oneBooking);
+                        result = "Booking successfully."
+                    }
+                });
+            }
         }
         console.log(result);
     }

@@ -1,11 +1,10 @@
-import { Order } from "../../Menu/Order";
+import { Order, OrderStatus } from "../../Menu/Order";
 import { Customer,PaidStatus } from "../customer/Customer";
 import { Gender } from "../Person";
 import { Staff, StaffCategory } from "./Staff";
 
 
 export class Cashier extends Staff{
-    public customers: Customer[] = [];
     public orders:Order[]=[];
     constructor(category:StaffCategory, id:number, name: string, age: number, gender: Gender) {
       super(category,id, name, age, gender);
@@ -24,7 +23,8 @@ export class Cashier extends Staff{
       let customerSpending = 0;
       let allOrders = this.orders;
       allOrders.forEach(order => {
-        if(order.getCustomerId() == customer.getCustomerId()){
+        if((order.getCustomerId() === customer.getCustomerId())&&(order.getOrderStatus()===OrderStatus.DONE)||
+        (order.getOrderStatus()===OrderStatus.IN_PROGRESS)){
           customerSpending+=order.getTotalPrice();
           customer.setPayedStatus(PaidStatus.PAID);
         }

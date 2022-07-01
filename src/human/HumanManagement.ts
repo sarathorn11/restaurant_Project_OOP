@@ -1,5 +1,6 @@
 import { Drink } from "../Menu/Drink";
 import { Food } from "../Menu/Food";
+import { OrderStatus } from "../Menu/Order";
 import { Customer } from "./customer/Customer";
 import { Cashier } from "./staff/Cashier";
 import { Chef } from "./staff/Chef";
@@ -55,7 +56,7 @@ export class HumanManagement{
         if(staff.getCategory() === StaffCategory.CASHIER){
           let cashier = staff as Cashier;
           for(let order of cashier.getOrders()) {
-            if(order.getDate().month === month){
+            if((order.getDate().month === month)&&((order.getOrderStatus()===OrderStatus.DONE)||(order.getOrderStatus()===OrderStatus.IN_PROGRESS))){
               revenue += order.getTotalPrice();
             }
           }
@@ -63,7 +64,7 @@ export class HumanManagement{
       }
       return revenue;
     }
-
+//demo-------------------------------
     getSalaryCashier(month:Months): number {
       let salary: number = 0;
       let numberStaffs = 0;
