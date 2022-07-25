@@ -135,17 +135,18 @@ menuItem1.addDrink(drink1);
 Sao.addOrder(order1);
 Sao.addOrder(order2);
 
-Sopha.setOrderStatus(order1,OrderStatus.DONE);
-Sopha.setOrderStatus(order2,OrderStatus.DONE);
+//Set order status
+// Sopha.setOrderStatus(order1,OrderStatus.DONE);
+// Sopha.setOrderStatus(order2,OrderStatus.DONE);
 
 
 // //check bill for customers
-console.log(Nge.getName()+" spends a total of "+ Sao.checkBill(Nge)+"$ today");
-console.log(Sarath.getName()+" spends a total of "+Sao.checkBill(Sarath)+"$ today");
+// console.log(Nge.getName()+" spends a total of "+ Sao.checkBill(Nge)+"$ today");
+// console.log(Sarath.getName()+" spends a total of "+Sao.checkBill(Sarath)+"$ today");
 
 //total revenue in the restaurant
-console.log("The restaurant total revenue is " +restaurant.human.getTotalRevenue(Months.MARCH)+"$ this month.");
-console.log("Each cashier get paid "+Math.round(restaurant.human.getSalaryCashier(Months.MARCH))+"$ this month.");
+// console.log("The restaurant total revenue is " +restaurant.human.getTotalRevenue(Months.MARCH)+"$ this month.");
+// console.log("Each cashier get paid "+Math.round(restaurant.human.getSalaryCashier(Months.MARCH))+"$ this month.");
 // console.log("Each chef get paid "+Math.round(restaurant.human.getSalaryChef(Months.MARCH))+"$ this month.");
 // console.log("Each security get paid "+Math.round(restaurant.human.getSalarySecurity(Months.MARCH))+"$ this month.");
 // console.log("Each waiter get paid "+Math.round(restaurant.human.getSalaryWaiter(Months.MARCH))+"$ this month.");
@@ -157,7 +158,7 @@ console.log("Each cashier get paid "+Math.round(restaurant.human.getSalaryCashie
 //remove booking
 // restaurant.booking.removerBooking(booking1)
 
-// console.log(restaurant.human.getStaffs());
+console.log(restaurant.human.getStaffs()[3]);
 
 
 
